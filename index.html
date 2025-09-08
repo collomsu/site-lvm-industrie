@@ -5,28 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LVM industrie : Études - Conception - Réalisation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Ajout d'une petite personnalisation si nécessaire */
-        /* Par exemple, pour des icônes ou des styles spécifiques */
-    </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800">
 
     <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#accueil" class="text-xl font-bold text-slate-900">LVM<span class="text-blue-600"> industrie</span></a>
+            
             <div class="hidden md:flex space-x-6 items-center">
                 <a href="#machines" class="text-slate-600 hover:text-blue-600 transition duration-300">Machines Spéciales</a>
                 <a href="#automatisme" class="text-slate-600 hover:text-blue-600 transition duration-300">Automatisme</a>
                 <a href="#monetique" class="text-slate-600 hover:text-blue-600 transition duration-300">Monétique</a>
                 <a href="#contact" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Contact</a>
             </div>
-             <div class="md:hidden">
-                <button class="text-slate-800">
+             
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <a href="#machines" class="block text-slate-700 py-3 px-6 hover:bg-slate-50">Machines Spéciales</a>
+            <a href="#automatisme" class="block text-slate-700 py-3 px-6 hover:bg-slate-50">Automatisme</a>
+            <a href="#monetique" class="block text-slate-700 py-3 px-6 hover:bg-slate-50">Monétique</a>
+            <a href="#contact" class="block bg-blue-50 text-blue-700 font-semibold py-3 px-6 hover:bg-blue-100">Contact</a>
+        </div>
     </header>
 
     <main>
@@ -198,6 +203,27 @@
             &copy; 2025 LVM industrie. Tous droits réservés.
         </div>
     </footer>
+
+    <script>
+        // On sélectionne le bouton et le menu par leur ID
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // On ajoute un "écouteur d'événement" sur le bouton
+        mobileMenuButton.addEventListener('click', () => {
+            // À chaque clic, on alterne la classe 'hidden' sur le menu
+            // Si le menu est caché, il devient visible, et vice-versa
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Amélioration : fermer le menu quand on clique sur un lien
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 
 </body>
 </html>
